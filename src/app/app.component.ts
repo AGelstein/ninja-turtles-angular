@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SearchNameService } from './api/search-name.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +10,22 @@ import { SearchNameService } from './api/search-name.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnDestroy, OnInit {
   title = 'ninja-turtles-app';
   data: any;
 
   constructor(private searchNameService: SearchNameService) {}
+  subscriptions = new Subscription();
 
   ngOnInit(): void {
-    this.searchNameService.searchName().subscribe((x) => {
-      console.log();
-    });
+    this.subscriptions.add(
+      this.searchNameService.getNinjaTurtle().subscribe((x) => {
+        console.log(x);
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
