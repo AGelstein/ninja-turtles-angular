@@ -29,3 +29,6 @@ export class AppComponent implements OnDestroy, OnInit {
     this.subscriptions.unsubscribe();
   }
 }
+
+// TODO use local store to minimize api calls
+// TODO make routes work
