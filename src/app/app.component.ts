@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SearchNameService } from './api/search-name.service';
+import { SearchNameService } from './api/search-hero-name.service';
 import { Subscription } from 'rxjs';
 
 @Component({

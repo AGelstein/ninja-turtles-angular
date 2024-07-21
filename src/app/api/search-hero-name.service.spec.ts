@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SearchNameService } from './search-name.service';
+import { SearchNameService } from './search-hero-name.service';
 
 describe('SearchNameService', () => {
   let service: SearchNameService;
