@@ -1,4 +1,4 @@
-export interface Turtle {
+export interface Hero {
   id: number;
   name: string;
 }
