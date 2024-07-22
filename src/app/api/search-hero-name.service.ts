@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { Hero } from '../models/turtle';
-import { map, Observable, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +17,9 @@ export class SearchNameService {
     );
   }
 
-  getNinjaTurtle(): Observable<Hero> {
+  getHeroByName(name: string): Observable<Hero> {
     return this.httpClient.get<Hero>(
-      `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/donatello`
+      `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${name}`
     );
   }
 }

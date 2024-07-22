@@ -19,7 +19,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.searchNameService.getNinjaTurtle().subscribe((x) => {
+      this.searchNameService.getHeroByName('donatello').subscribe((x) => {
         console.log(x);
       })
     );
@@ -29,6 +29,3 @@ export class AppComponent implements OnDestroy, OnInit {
     this.subscriptions.unsubscribe();
   }
 }
-
-// TODO use local store to minimize api calls
-// TODO make routes work
