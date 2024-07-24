@@ -8,7 +8,6 @@ import { HeroDropdownComponent } from '../hero-dropdown/hero-dropdown.component'
   standalone: true,
   imports: [HeroDropdownComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnDestroy, OnInit {
   Title = 'Room of Really Really Strong Dudes';

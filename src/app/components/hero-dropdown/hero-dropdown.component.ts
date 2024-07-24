@@ -5,6 +5,5 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './hero-dropdown.component.html',
-  styleUrl: './hero-dropdown.component.css',
 })
 export class HeroDropdownComponent {}
