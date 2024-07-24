@@ -2,11 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SearchNameService } from '../../api/search-hero-name.service';
 import { Subscription } from 'rxjs';
 import { HeroDropdownComponent } from '../hero-dropdown/hero-dropdown.component';
+import { HeroDetailsComponent } from '../hero-details/hero-details/hero-details.component';
+import { AvatarComponent } from '../avatar/avatar.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeroDropdownComponent],
+  imports: [HeroDropdownComponent, HeroDetailsComponent, AvatarComponent],
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnDestroy, OnInit {
