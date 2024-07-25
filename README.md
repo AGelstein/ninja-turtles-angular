@@ -30,3 +30,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 - overwrite existing theme with custom theme
 - implement a state soultion for a local store
+- implement screen readers
