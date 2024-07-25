@@ -1,17 +1,18 @@
 <div class="container mx-auto p-5">
   <div
-    class="flex w-full items-center justify-center h-32 bg-lime-100 border-2 border-lime-600"
+    class="flex w-full items-center justify-center h-32 bg-lime-50 border-2 border-stone-200"
   >
-    <div class="border-2 bg-lime-50 border-lime-600 p-4">
+    <div class="p-4">
       <h1 class="text-3xl font-bold">Room of Really Really Strong Dudes</h1>
     </div>
   </div>
-  <!-- TODO find a column layout that doesnt bleed content -->
-  <div class="columns-2 items-center mt-2 border-2 border-lime-600">
-    <div>
+  <div class="flex flex-col md:flex-row">
+    <div class="flex-1 p-4 border-2 border-stone-200">
       <app-hero-details></app-hero-details>
     </div>
-    <div>
+    <div
+      class="flex-1 p-4 flex items-center justify-center border-2 border-stone-200"
+    >
       <app-avatar></app-avatar>
     </div>
   </div>
