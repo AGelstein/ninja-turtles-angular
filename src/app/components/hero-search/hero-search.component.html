@@ -1,8 +1,13 @@
 <div class="flex items-center justify-center">
-  <input
-    type="text"
-    placeholder="Search..."
-    class="w-full py-2 px-4 border border-gray-300"
-  />
-  <button type="submit" class="py-2 px-4 border border-gray-300">Search</button>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="flex">
+    <input
+      type="text"
+      formControlName="query"
+      placeholder="Search..."
+      class="w-full py-2 px-4 border border-gray-300"
+    />
+    <button type="submit" class="py-2 px-4 border border-gray-300">
+      Search
+    </button>
+  </form>
 </div>
