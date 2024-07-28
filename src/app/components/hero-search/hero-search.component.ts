@@ -24,12 +24,7 @@ export class HeroSearchComponent {
   onSubmit() {
     if (this.searchForm.valid) {
       const queryValue = this.searchForm.get('query')?.value;
-      this.searchNameService
-        .getHeroByName(queryValue)
-        // leaky subscription
-        .subscribe((response) => {
-          console.log('Response:', response);
-        });
+      this.searchNameService.getHeroByName(queryValue);
     }
   }
 }
