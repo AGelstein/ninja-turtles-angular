@@ -11,15 +11,9 @@ export class SearchNameService {
   constructor() {}
   private httpClient = inject(HttpClient);
 
-  searchName() {
-    return this.httpClient.get<Hero>(
-      `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/donatello`
-    );
-  }
-
-  getHeroByName(name: string): Observable<Hero> {
-    return this.httpClient.get<Hero>(
-      `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${name}`
+  searchHeroes(query: string): Observable<Hero[]> {
+    return this.httpClient.get<Hero[]>(
+      `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${query}`
     );
   }
 }
