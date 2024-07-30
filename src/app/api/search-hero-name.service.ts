@@ -2,30 +2,33 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { Hero } from '../models/Hero';
-import { ComponentStore } from '@ngrx/component-store';
-import { HeroState } from '../components/hero-search/heroes.store';
-import { map, Observable } from 'rxjs';
+import { heroStore } from '../components/state/hero.store';
+import { map } from 'rxjs';
+import { setEntities } from '@ngneat/elf-entities';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SearchHeroService extends ComponentStore<HeroState> {
-  constructor() {
-    super({ heroes: [] });
-  }
+export class SearchHeroService {
+  constructor() {}
   private httpClient = inject(HttpClient);
-  readonly heroes$ = this.select((state) => state.heroes);
-  readonly setHeroes = this.updater((state, heroes: Hero[]) => ({
-    ...state,
-    heroes,
-  }));
 
-  searchHeroes(query: string): Observable<Hero[]> {
+  searchHeroes(query: string) {
     return this.httpClient
       .get<Hero[]>(
         `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${query}`
       )
-      .pipe(map((response) => this.ensureArray(response)));
+      .pipe(
+        // todo use response dynamically to populate. right now we are hardcoding 1 to see if store works
+        map((response) =>
+          heroStore.update(
+            setEntities([
+              { id: 1, name: 'Superman' },
+              { id: 2, name: 'Bateman' },
+            ])
+          )
+        )
+      );
   }
 
   private ensureArray(data: Hero[] | Hero): Hero[] {

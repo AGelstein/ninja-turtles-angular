@@ -4,6 +4,7 @@ import { SearchHeroService } from '../../api/search-hero-name.service';
 import { Subject, takeUntil } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Hero } from '../../models/Hero';
+import { heroQuery } from '../state/hero.query';
 
 @Component({
   selector: 'app-hero-search',
@@ -33,11 +34,11 @@ export class HeroSearchComponent implements OnDestroy {
       this.searchNameService
         .searchHeroes(queryValue)
         .pipe(takeUntil(this._destroy$))
-        .subscribe((heroes) => {
-          this.heroes = heroes;
-          console.log('right after asignment', this.heroes);
-        });
+        .subscribe();
     }
+    heroQuery.subscribe((heroQuery) => {
+      console.log('I am a HERO! ', heroQuery);
+    });
   }
 
   ngOnDestroy(): void {
