@@ -1,4 +1,6 @@
 import { heroStore } from './hero.store';
-import { selectAllEntities } from '@ngneat/elf-entities';
+import { selectAllEntities, selectEntitiesCount } from '@ngneat/elf-entities';
 
-export const heroQuery = heroStore.pipe(selectAllEntities());
+export const SelectAllHeroQuery = heroStore.pipe(selectAllEntities());
+
+export const SelectHeroCountQuery = heroStore.pipe(selectEntitiesCount());

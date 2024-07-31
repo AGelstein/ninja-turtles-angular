@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { Hero } from '../models/Hero';
 import { heroStore } from '../components/state/hero.store';
 import { map } from 'rxjs';
-import { setEntities } from '@ngneat/elf-entities';
+import { addEntities, setEntities, setEntitiesMap } from '@ngneat/elf-entities';
 
 @Injectable({
   providedIn: 'root',
@@ -19,15 +19,10 @@ export class SearchHeroService {
         `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${query}`
       )
       .pipe(
-        // todo use response dynamically to populate. right now we are hardcoding 1 to see if store works
-        map((response) =>
-          heroStore.update(
-            setEntities([
-              { id: 1, name: 'Superman' },
-              { id: 2, name: 'Bateman' },
-            ])
-          )
-        )
+        // we're shoving all the entities in but it's not discerning by hero object
+        map((response) => {
+          heroStore.update(addEntities(response));
+        })
       );
   }
 
