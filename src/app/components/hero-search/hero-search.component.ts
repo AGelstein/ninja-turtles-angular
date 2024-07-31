@@ -36,7 +36,7 @@ export class HeroSearchComponent implements OnDestroy {
         .pipe(takeUntil(this._destroy$))
         .subscribe();
     }
-    SelectHeroCountQuery.subscribe((query: any) => console.log(query));
+    // SelectHeroCountQuery.subscribe((query: any) => console.log(query));
 
     SelectAllHeroQuery.subscribe((heroQuery) =>
       console.log('ALL HEROES: ', heroQuery)

@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { Hero } from '../models/Hero';
 import { heroStore } from '../components/state/hero.store';
 import { map } from 'rxjs';
-import { addEntities, setEntities, setEntitiesMap } from '@ngneat/elf-entities';
+import { addEntities } from '@ngneat/elf-entities';
 
 @Injectable({
   providedIn: 'root',
@@ -19,14 +19,22 @@ export class SearchHeroService {
         `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${query}`
       )
       .pipe(
-        // we're shoving all the entities in but it's not discerning by hero object
+        // we're shoving all the entities in but it's not discerning by hero
+        // currently it sees only one large entity
         map((response) => {
-          heroStore.update(addEntities(response));
+          let heros = this.transformData(response);
+          heroStore.update(addEntities(heros));
         })
       );
   }
 
-  private ensureArray(data: Hero[] | Hero): Hero[] {
-    return Array.isArray(data) ? data : [data];
+  // the data is coming in as an array of objects and we're not parsing that right yet
+  private transformData(apiData: any): Hero {
+    console.log('transformData: ', apiData);
+
+    return {
+      id: apiData.id,
+      name: apiData.name,
+    };
   }
 }
