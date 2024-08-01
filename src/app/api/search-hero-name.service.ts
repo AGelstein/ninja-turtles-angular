@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { Hero } from '../models/Hero';
-import { heroStore } from '../components/state/hero.store';
+import { heroStore } from '../repository/hero.store';
 import { map } from 'rxjs';
 import { addEntities } from '@ngneat/elf-entities';
 

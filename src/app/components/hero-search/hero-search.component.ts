@@ -4,7 +4,10 @@ import { SearchHeroService } from '../../api/search-hero-name.service';
 import { Subject, takeUntil } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Hero } from '../../models/Hero';
-import { SelectAllHeroQuery, SelectHeroCountQuery } from '../state/hero.query';
+import {
+  SelectAllHeroQuery,
+  SelectHeroCountQuery,
+} from '../../repository/hero.query';
 
 @Component({
   selector: 'app-hero-search',
