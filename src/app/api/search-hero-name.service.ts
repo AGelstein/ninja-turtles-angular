@@ -2,36 +2,37 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { Hero } from '../models/Hero';
-import { heroStore } from '../repository/hero.store';
 import { map } from 'rxjs';
-import { addEntities } from '@ngneat/elf-entities';
+import { HeroRepository } from '../repository/hero.repository';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchHeroService {
-  constructor() {}
+  constructor(private heroRepository: HeroRepository) {}
   private httpClient = inject(HttpClient);
+  BobbyHill: Hero = {
+    id: 0,
+    name: '',
+  };
 
   searchHeroes(query: string) {
+    this.BobbyHill = {
+      id: 2,
+      name: 'Bobby Hill',
+    };
+
     return this.httpClient
       .get<Hero[]>(
         `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${query}`
       )
-      .pipe(
-        // we're shoving all the entities in but it's not discerning by hero
-        // currently it sees only one large entity
-        map((response) => {
-          let heros = this.transformData(response);
-          heroStore.update(addEntities(heros));
-        })
-      );
+      .pipe(map((response) => this.transformToHero(response)))
+      .subscribe((heroes) => {
+        this.heroRepository.update(this.BobbyHill);
+      });
   }
 
-  // the data is coming in as an array of objects and we're not parsing that right yet
-  private transformData(apiData: any): Hero {
-    console.log('transformData: ', apiData);
-
+  private transformToHero(apiData: any): Hero {
     return {
       id: apiData.id,
       name: apiData.name,

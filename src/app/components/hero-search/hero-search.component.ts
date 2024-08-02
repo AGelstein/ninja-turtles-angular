@@ -1,13 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SearchHeroService } from '../../api/search-hero-name.service';
-import { Subject, takeUntil } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Hero } from '../../models/Hero';
-import {
-  SelectAllHeroQuery,
-  SelectHeroCountQuery,
-} from '../../repository/hero.query';
+import { HeroRepository } from '../../repository/hero.repository';
 
 @Component({
   selector: 'app-hero-search',
@@ -17,14 +13,14 @@ import {
   templateUrl: './hero-search.component.html',
   styleUrl: './hero-search.component.css',
 })
-export class HeroSearchComponent implements OnDestroy {
+export class HeroSearchComponent {
   searchForm: FormGroup;
   heroes: Hero[] = [];
-  private _destroy$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
-    private searchNameService: SearchHeroService
+    private searchNameService: SearchHeroService,
+    private heroRepository: HeroRepository
   ) {
     this.searchForm = this.fb.group({
       query: [''],
@@ -34,19 +30,10 @@ export class HeroSearchComponent implements OnDestroy {
   onSubmit() {
     if (this.searchForm.valid) {
       const queryValue = this.searchForm.get('query')?.value;
-      this.searchNameService
-        .searchHeroes(queryValue)
-        .pipe(takeUntil(this._destroy$))
-        .subscribe();
+      this.searchNameService.searchHeroes(queryValue);
     }
-    // SelectHeroCountQuery.subscribe((query: any) => console.log(query));
-
-    SelectAllHeroQuery.subscribe((heroQuery) =>
-      console.log('ALL HEROES: ', heroQuery)
-    );
-  }
-
-  ngOnDestroy(): void {
-    this._destroy$.next();
+    this.heroRepository.getAll().subscribe((hero) => {
+      console.log(hero);
+    });
   }
 }
