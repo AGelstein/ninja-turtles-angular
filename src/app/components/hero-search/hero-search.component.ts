@@ -33,7 +33,10 @@ export class HeroSearchComponent {
       this.searchNameService.searchHeroes(queryValue);
     }
     this.heroRepository.getAll().subscribe((hero) => {
-      console.log(hero);
+      console.log('all heros: ', hero);
+    });
+    this.heroRepository.first$.subscribe((hero) => {
+      console.log('first hero: ', hero);
     });
   }
 }

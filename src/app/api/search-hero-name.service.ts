@@ -11,24 +11,24 @@ import { HeroRepository } from '../repository/hero.repository';
 export class SearchHeroService {
   constructor(private heroRepository: HeroRepository) {}
   private httpClient = inject(HttpClient);
-  BobbyHill: Hero = {
-    id: 0,
-    name: '',
-  };
 
   searchHeroes(query: string) {
-    this.BobbyHill = {
-      id: 2,
-      name: 'Bobby Hill',
-    };
-
     return this.httpClient
-      .get<Hero[]>(
+      .get<any>(
         `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${query}`
       )
-      .pipe(map((response) => this.transformToHero(response)))
+      .pipe(
+        map((response) => {
+          if (Array.isArray(response.results)) {
+            const x = response.results.map(this.transformToHero);
+            return response.results.map(this.transformToHero);
+          } else {
+            throw new Error('Invalid API response: results is not an array');
+          }
+        })
+      )
       .subscribe((heroes) => {
-        this.heroRepository.update(this.BobbyHill);
+        this.heroRepository.update(heroes);
       });
   }
 

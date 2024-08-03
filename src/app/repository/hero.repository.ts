@@ -1,10 +1,8 @@
-import { createStore, select } from '@ngneat/elf';
+import { createStore } from '@ngneat/elf';
 import {
   addEntities,
   selectAllEntities,
   selectFirst,
-  selectLast,
-  updateEntities,
   withActiveId,
   withEntities,
 } from '@ngneat/elf-entities';
@@ -18,12 +16,11 @@ const store = createStore(
   withActiveId()
 );
 
-export const first$ = store.pipe(selectFirst());
-export const last$ = store.pipe(selectLast());
-
 @Injectable({ providedIn: 'root' })
 export class HeroRepository {
   constructor() {}
+
+  first$ = store.pipe(selectFirst());
 
   update(hero: Hero) {
     store.update(addEntities(hero));
