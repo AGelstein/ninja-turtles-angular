@@ -28,6 +28,7 @@ export class SearchHeroService {
         })
       )
       .subscribe((heroes) => {
+        this.heroRepository.clearStore();
         this.heroRepository.update(heroes);
       });
   }

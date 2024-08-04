@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SearchHeroService } from '../../api/search-hero-name.service';
 import { AsyncPipe } from '@angular/common';
 import { Hero } from '../../models/Hero';
-import { HeroRepository } from '../../repository/hero.repository';
 
 @Component({
   selector: 'app-hero-search',
@@ -19,8 +18,7 @@ export class HeroSearchComponent {
 
   constructor(
     private fb: FormBuilder,
-    private searchNameService: SearchHeroService,
-    private heroRepository: HeroRepository
+    private searchNameService: SearchHeroService
   ) {
     this.searchForm = this.fb.group({
       query: [''],
@@ -32,11 +30,5 @@ export class HeroSearchComponent {
       const queryValue = this.searchForm.get('query')?.value;
       this.searchNameService.searchHeroes(queryValue);
     }
-    this.heroRepository.getAll().subscribe((hero) => {
-      console.log('all heros: ', hero);
-    });
-    this.heroRepository.first$.subscribe((hero) => {
-      console.log('first hero: ', hero);
-    });
   }
 }

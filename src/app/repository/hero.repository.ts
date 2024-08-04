@@ -29,4 +29,8 @@ export class HeroRepository {
   getAll(): Observable<Hero[]> {
     return store.pipe(selectAllEntities());
   }
+
+  clearStore() {
+    store.reset();
+  }
 }

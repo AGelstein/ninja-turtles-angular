@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Hero } from '../../../models/Hero';
 
 @Component({
   selector: 'app-hero-card',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './hero-card.component.html',
 })
-export class HeroCardComponent {}
+export class HeroCardComponent {
+  // todo remove bang
+  @Input() hero!: Hero;
+}
