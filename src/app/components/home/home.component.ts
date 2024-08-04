@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeroSearchComponent } from '../hero-search/hero-search.component';
 import { HeroCardComponent } from '../hero-card/hero-card/hero-card.component';
 import { HeroRepository } from '../../repository/hero.repository';
@@ -12,8 +12,7 @@ import { AsyncPipe, NgFor } from '@angular/common';
 })
 export class HomeComponent {
   Title = 'Room of Really Really Strong Dudes';
-
-  constructor(public heroRepository: HeroRepository) {}
+  heroRepository = inject(HeroRepository);
 
   Heroes$ = this.heroRepository.getAll().subscribe((heroes) => {
     console.log(heroes);

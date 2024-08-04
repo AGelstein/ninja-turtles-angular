@@ -9,7 +9,7 @@ import { HeroRepository } from '../repository/hero.repository';
   providedIn: 'root',
 })
 export class SearchHeroService {
-  constructor(private heroRepository: HeroRepository) {}
+  private heroRepository = inject(HeroRepository);
   private httpClient = inject(HttpClient);
 
   searchHeroes(query: string) {

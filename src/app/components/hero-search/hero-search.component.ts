@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SearchHeroService } from '../../api/search-hero-name.service';
 import { AsyncPipe } from '@angular/common';
@@ -13,13 +13,11 @@ import { Hero } from '../../models/Hero';
   styleUrl: './hero-search.component.css',
 })
 export class HeroSearchComponent {
+  searchNameService = inject(SearchHeroService);
   searchForm: FormGroup;
   heroes: Hero[] = [];
 
-  constructor(
-    private fb: FormBuilder,
-    private searchNameService: SearchHeroService
-  ) {
+  constructor(private fb: FormBuilder) {
     this.searchForm = this.fb.group({
       query: [''],
     });
