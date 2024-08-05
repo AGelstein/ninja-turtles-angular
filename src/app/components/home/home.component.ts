@@ -14,7 +14,5 @@ export class HomeComponent {
   Title = 'Room of Really Really Strong Dudes';
   heroRepository = inject(HeroRepository);
 
-  Heroes$ = this.heroRepository.getAll().subscribe((heroes) => {
-    console.log(heroes);
-  });
+  Heroes$ = this.heroRepository.getAll();
 }

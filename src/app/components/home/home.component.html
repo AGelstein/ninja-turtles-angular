@@ -8,6 +8,8 @@
     <app-hero-search></app-hero-search>
   </div>
   <div class="container mx-auto h-10 border-green-600 border-2 bg-gray-100">
-    Result List here
+    @for(hero of Heroes$ | async; track hero.id) {
+    <app-hero-card [hero]="hero"></app-hero-card>
+    }
   </div>
 </div>

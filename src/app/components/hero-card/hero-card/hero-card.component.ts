@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Hero } from '../../../models/Hero';
 
 @Component({
@@ -7,7 +7,9 @@ import { Hero } from '../../../models/Hero';
   imports: [],
   templateUrl: './hero-card.component.html',
 })
-export class HeroCardComponent {
+export class HeroCardComponent implements OnInit {
   // todo remove bang
-  @Input() hero!: Hero;
+  @Input() hero: Hero | null = null;
+
+  ngOnInit(): void {}
 }
