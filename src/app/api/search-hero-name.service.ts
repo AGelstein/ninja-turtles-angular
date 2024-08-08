@@ -20,7 +20,6 @@ export class SearchHeroService {
       .pipe(
         map((response) => {
           if (Array.isArray(response.results)) {
-            const x = response.results.map(this.transformToHero);
             return response.results.map(this.transformToHero);
           } else {
             throw new Error('Invalid API response: results is not an array');
@@ -34,9 +33,11 @@ export class SearchHeroService {
   }
 
   private transformToHero(apiData: any): Hero {
+    const x = apiData.image;
     return {
       id: apiData.id,
       name: apiData.name,
+      img: decodeURIComponent(apiData.image.url),
     };
   }
 }
