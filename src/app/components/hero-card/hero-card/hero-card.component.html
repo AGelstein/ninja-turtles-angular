@@ -1,7 +1,17 @@
-<div class="max-w-sm rounded overflow-hidden shadow-lg bg-white p-4 min-w-60">
-  <div class="font-bold text-xl mb-2">{{ hero?.name }}</div>
-  <p class="text-gray-700 text-base">
-    {{ hero?.id }}
-  </p>
+<div
+  class="max-w-sm rounded overflow-hidden shadow-lg flex flex-col justify-between bg-white p-4 min-w-60"
+>
+  <div class="justify-between items-center flex mb-2">
+    <div class="font-bold text-xl">{{ hero?.name }}</div>
+    <span class="text-sm rounded-full p-1 bg-gray-300">#{{ hero?.id }}</span>
+  </div>
+  <h2 class="text-sm font-medium">
+    Intelligence: {{ hero?.powerstats?.intelligence }}
+  </h2>
+  <h2 class="text-sm font-medium">
+    Strength: {{ hero?.powerstats?.strength }}
+  </h2>
+  <h2 class="text-sm font-medium">Speed: {{ hero?.powerstats?.speed }}</h2>
+  <h2 class="text-sm font-medium">Power: {{ hero?.powerstats?.power }}</h2>
   <img [src]="hero?.img" class="w-full h-48 object-cover" />
 </div>

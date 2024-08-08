@@ -38,6 +38,7 @@ export class SearchHeroService {
       id: apiData.id,
       name: apiData.name,
       img: decodeURIComponent(apiData.image.url),
+      powerstats: apiData.powerstats,
     };
   }
 }

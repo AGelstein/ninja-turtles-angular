@@ -8,7 +8,6 @@ import { Hero } from '../../../models/Hero';
   templateUrl: './hero-card.component.html',
 })
 export class HeroCardComponent implements OnInit {
-  // todo remove bang
   @Input() hero: Hero | null = null;
 
   ngOnInit(): void {}
