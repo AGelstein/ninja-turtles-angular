@@ -11,5 +11,5 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Future Ideas
 
 - overwrite existing theme with custom theme
-- implement a state soultion for a local store
+- ~~implement a state soultion for a local store~~
 - implement screen readers
