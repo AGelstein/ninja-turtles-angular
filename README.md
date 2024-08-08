@@ -1,30 +1,13 @@
-# NinjaTurtlesApp
+# What??
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
+Room of Really Really Strong Dudes
+This project began as a Ninja Turtles search app but evolved into a "Hall of Heroes" inspired application that I've humorously named "Room of Really Really Strong Dudes." It's a simple hero lookup tool leveraging a free online superhero API. The app is built with Angular 18, styled with Tailwind CSS, and utilizes Elf for state management. This project has been a fun way to experiment with new technologies and explore building user-friendly web applications.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![image](https://github.com/user-attachments/assets/240b7bd2-6be7-4d9e-a6ba-d070dd00b4e3)
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## Future Ideas
 
