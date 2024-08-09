@@ -33,7 +33,6 @@ export class SearchHeroService {
   }
 
   private transformToHero(apiData: any): Hero {
-    const x = apiData.image;
     return {
       id: apiData.id,
       name: apiData.name,
