@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { Hero } from '../../../models/Hero';
 
 @Component({
@@ -8,7 +8,7 @@ import { Hero } from '../../../models/Hero';
   templateUrl: './hero-card.component.html',
 })
 export class HeroCardComponent implements OnInit {
-  @Input() hero: Hero | null = null;
+  public hero = input.required<Hero>();
 
   ngOnInit(): void {}
 }
