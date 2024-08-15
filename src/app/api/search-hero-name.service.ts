@@ -4,11 +4,13 @@ import { environment } from '../../environments/environment.development';
 import { Hero } from '../models/Hero';
 import { map } from 'rxjs';
 import { HeroRepository } from '../repository/hero.repository';
+import { AuditLogRepository } from '../repository/audit-log.repository';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchHeroService {
+  private auditLogRepository = inject(AuditLogRepository)
   private heroRepository = inject(HeroRepository);
   private httpClient = inject(HttpClient);
 
@@ -29,6 +31,7 @@ export class SearchHeroService {
       .subscribe((heroes) => {
         this.heroRepository.clearStore();
         this.heroRepository.update(heroes);
+        this.auditLogRepository.log('SearchHeroService')
       });
   }
 
