@@ -17,7 +17,7 @@ export class AuditLogRepository {
 
     log(message: string) {
         const log: AuditLog = {
-        id: uuidv4().toString(), // Generates a unique ID
+        id: uuidv4().toString(),
         message: message,
         timestamp: new Date()
         }
