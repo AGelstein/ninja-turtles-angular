@@ -8,7 +8,7 @@ import { Hero } from '../../../models/Hero';
   templateUrl: './hero-card.component.html',
 })
 export class HeroCardComponent implements OnInit {
-  public hero = input.required<Hero>();
+  public hero = input.required<Hero>()
 
   ngOnInit(): void {}
 }

@@ -31,7 +31,7 @@ export class SearchHeroService {
       .subscribe((heroes) => {
         this.heroRepository.clearStore();
         this.heroRepository.update(heroes);
-        this.auditLogRepository.log('SearchHeroService')
+        this.auditLogRepository.log('Hero Search Executed')
       });
   }
 

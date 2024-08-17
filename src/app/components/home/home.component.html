@@ -13,8 +13,10 @@
     </div>
   </div>
 </div>
+@if(logsExist$ | async){
 <div class="container mx-auto p-5">
   <div class="flex justify-center h-full bg-gray-100 py-5">
     <app-audit-log></app-audit-log>
   </div>
 </div>
+}

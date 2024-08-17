@@ -1,4 +1,4 @@
-import { addEntities, selectAllEntities, withActiveId, withEntities } from "@ngneat/elf-entities";
+import { addEntities, selectAllEntities, selectEntitiesCount, withActiveId, withEntities } from "@ngneat/elf-entities";
 import { AuditLog } from "../models/AuditLog";
 import { createStore } from "@ngneat/elf";
 import { Injectable } from "@angular/core";
@@ -18,14 +18,15 @@ export class AuditLogRepository {
     log(message: string) {
         const log: AuditLog = {
         id: uuidv4().toString(),
-        message: message,
+        action: message,
         timestamp: new Date()
         }
         store.update(addEntities(log))
     }
 
+    logsExist$ = store.pipe(selectEntitiesCount())
 
     getAllAuditLogRows(): Observable<AuditLog[]> {
-        return store.pipe(selectAllEntities());
+        return store.pipe(selectAllEntities())
     }
 }

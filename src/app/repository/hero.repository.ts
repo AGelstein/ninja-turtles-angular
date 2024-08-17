@@ -2,13 +2,12 @@ import { createStore } from '@ngneat/elf';
 import {
   addEntities,
   selectAllEntities,
-  selectFirst,
   withActiveId,
   withEntities,
 } from '@ngneat/elf-entities';
 import { Hero } from '../models/Hero';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 const store = createStore(
   { name: 'heroes' },
@@ -19,8 +18,6 @@ const store = createStore(
 @Injectable({ providedIn: 'root' })
 export class HeroRepository {
   constructor() {}
-
-  first$ = store.pipe(selectFirst());
 
   update(hero: Hero) {
     store.update(addEntities(hero));

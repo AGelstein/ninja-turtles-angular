@@ -30,6 +30,5 @@ export class HeroSearchComponent {
       const queryValue = this.searchForm.get('query')?.value;
       this.searchNameService.searchHeroes(queryValue);
     }
-    this.auditLogRepository.getAllAuditLogRows().subscribe(console.log)
   }
 }
