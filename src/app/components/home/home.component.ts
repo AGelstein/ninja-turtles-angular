@@ -5,6 +5,7 @@ import { HeroRepository } from '../../repository/hero.repository';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { AuditLogComponent } from '../action-log/audit-log/audit-log.component';
 import { AuditLogRepository } from '../../repository/audit-log.repository';
+import { Hero } from '../../models/Hero';
 
 
 @Component({
@@ -26,4 +27,10 @@ export class HomeComponent {
 
   logsExist$ = this.auditLogRepository.logsExist$
   Heroes$ = this.heroRepository.getAll()
+
+  // TODO move this method
+  // while this technically works here, it feels like heroClick behavior should be contained within the heroCard component
+  heroClick(hero: Hero) {
+    this.auditLogRepository.log(`${hero.name} has been clicked`)
+  }
 }
