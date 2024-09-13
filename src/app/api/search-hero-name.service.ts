@@ -21,7 +21,6 @@ export class SearchHeroService {
         `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${query}`
       )
       .pipe(
-        takeUntilDestroyed(),
         map((response) => {
           if (Array.isArray(response.results)) {
             return response.results.map(this.transformToHero);

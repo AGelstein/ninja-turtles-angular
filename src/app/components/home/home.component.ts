@@ -6,6 +6,7 @@ import { AsyncPipe, NgFor } from '@angular/common';
 import { AuditLogComponent } from '../action-log/audit-log/audit-log.component';
 import { AuditLogRepository } from '../../repository/audit-log.repository';
 import { Hero } from '../../models/Hero';
+import { HeroSearchResultsComponent } from '../hero-search-results/hero-search-results.component';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { Hero } from '../../models/Hero';
     AsyncPipe,
     NgFor,
     AuditLogComponent,
+    HeroSearchResultsComponent
   ],
   templateUrl: './home.component.html',
 })

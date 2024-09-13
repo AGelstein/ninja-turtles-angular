@@ -3,14 +3,8 @@
     <div class="pt-4">
       <h1 class="text-3xl font-bold">Room of Really Really Strong Dudes</h1>
     </div>
-    <app-hero-search></app-hero-search>
-    <div
-      class="container mx-auto p-4 bg-gray-100 flex flex-row space-x-2 h-full"
-    >
-      @for(hero of Heroes$ | async; track hero.id) {
-      <app-hero-card (click)="heroClick(hero)" [hero]="hero"></app-hero-card>
-      }
-    </div>
+    <app-hero-search/>
+    <app-hero-search-results/>
   </div>
 </div>
 @if(logsExist$ | async){
