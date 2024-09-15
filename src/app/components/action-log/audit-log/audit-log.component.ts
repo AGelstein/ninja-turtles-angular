@@ -11,7 +11,6 @@ import { AsyncPipe } from '@angular/common';
 })
 export class AuditLogComponent {
   private readonly auditLogRepository = inject(AuditLogRepository)
-
   $auditLog = this.auditLogRepository.getAllAuditLogRows()
-
+  logsExist$ = this.auditLogRepository.logsExist$
 }

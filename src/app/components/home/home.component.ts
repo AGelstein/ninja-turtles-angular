@@ -26,7 +26,5 @@ export class HomeComponent {
   Title = 'Room of Really Really Strong Dudes'
   heroRepository = inject(HeroRepository)
   auditLogRepository = inject(AuditLogRepository)
-
-  logsExist$ = this.auditLogRepository.logsExist$
   Heroes$ = this.heroRepository.getAll()
 }
