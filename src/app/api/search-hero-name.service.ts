@@ -25,6 +25,8 @@ export class SearchHeroService {
           if (Array.isArray(response.results)) {
             return response.results.map(this.transformToHero);
           } else {
+            //todo make error type?
+            this.auditLogRepository.log('ERROR: No hero found by that name')
             throw new Error('Invalid API response: results is not an array');
           }
         })
