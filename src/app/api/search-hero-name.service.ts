@@ -5,7 +5,6 @@ import { Hero } from '../models/Hero';
 import { map } from 'rxjs';
 import { HeroRepository } from '../repository/hero.repository';
 import { AuditLogRepository } from '../repository/audit-log.repository';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',

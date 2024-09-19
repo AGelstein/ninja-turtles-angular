@@ -5,7 +5,6 @@ import { HeroRepository } from '../../repository/hero.repository';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { AuditLogComponent } from '../action-log/audit-log/audit-log.component';
 import { AuditLogRepository } from '../../repository/audit-log.repository';
-import { Hero } from '../../models/Hero';
 import { HeroSearchResultsComponent } from '../hero-search-results/hero-search-results.component';
 import { TitlebarComponent } from "../titlebar/titlebar.component";
 

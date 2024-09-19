@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './titlebar.component.html'
 })
-export class TitlebarComponent {
-
-}
+export class TitlebarComponent { }
