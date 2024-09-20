@@ -23,4 +23,5 @@ export class HeroSearchResultsComponent {
     this.auditLogRepository.log(`${hero.name} has been clicked`)
   }
 
+  // TODO when there is a really long list of heroes we should break to another row after X amount
 }

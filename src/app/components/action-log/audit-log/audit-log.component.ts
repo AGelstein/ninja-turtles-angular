@@ -14,3 +14,6 @@ export class AuditLogComponent {
   $auditLog = this.auditLogRepository.getAllAuditLogRows()
   logsExist$ = this.auditLogRepository.logsExist$
 }
+  // TODO the newest log should appear at the top of the list rather than the bottom
+  // TODO Should have a limitation of how many rows we can show before a paging behavior occurs
+  // TODO need title for "Audit Log" in component
