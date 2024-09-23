@@ -4,6 +4,7 @@ import { Hero } from '../../models/Hero';
 import { AuditLogRepository } from '../../repository/audit-log.repository';
 import { HeroRepository } from '../../repository/hero.repository';
 import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-hero-search-results',
@@ -16,8 +17,8 @@ export class HeroSearchResultsComponent {
   heroRepository = inject(HeroRepository)
   auditLogRepository = inject(AuditLogRepository)
 
-  logsExist$ = this.auditLogRepository.logsExist$
-  Heroes$ = this.heroRepository.getAll()
+  logsExist$: Observable<boolean> = this.auditLogRepository.logsExist$
+  Heroes$: Observable<Hero[]> = this.heroRepository.getAll()
 
   heroClick(hero: Hero) {
     this.auditLogRepository.log(`${hero.name} has been clicked`)

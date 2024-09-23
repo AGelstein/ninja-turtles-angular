@@ -1,9 +1,11 @@
-<div class="container mx-auto p-4 bg-gray-100 flex flex-row space-x-2 h-full">
-@if(Heroes$ | async) {
-    @for(hero of Heroes$ | async; track hero.id) {
-    <app-hero-card (click)="heroClick(hero)" [hero]="hero"></app-hero-card>
-    }
-} @else {
-    <p>No heroes found!</p>
-}
-</div>
+<div class="container mx-auto p-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        @if(Heroes$ | async) {
+            @for(hero of Heroes$ | async; track hero.id)
+            {
+                <app-hero-card (click)="heroClick(hero)" [hero]="hero"></app-hero-card>
+            }
+        } @else {
+            <p>No heroes found!</p>
+        }
+    </div>

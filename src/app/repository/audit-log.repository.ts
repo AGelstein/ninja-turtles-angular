@@ -2,7 +2,7 @@ import { addEntities, selectAllEntities, selectEntitiesCount, withActiveId, with
 import { AuditLog } from "../models/AuditLog";
 import { createStore } from "@ngneat/elf";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { v4 as uuidv4 } from 'uuid';
 
 const store = createStore(
@@ -24,7 +24,10 @@ export class AuditLogRepository {
         store.update(addEntities(log))
     }
 
-    logsExist$ = store.pipe(selectEntitiesCount())
+    logsExist$: Observable<boolean> = store.pipe(
+        selectEntitiesCount(),
+        map((count: number) => count > 0)
+    )
 
     getAllAuditLogRows(): Observable<AuditLog[]> {
         return store.pipe(selectAllEntities())

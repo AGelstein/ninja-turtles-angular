@@ -7,6 +7,8 @@ import { AuditLogComponent } from '../action-log/audit-log/audit-log.component';
 import { AuditLogRepository } from '../../repository/audit-log.repository';
 import { HeroSearchResultsComponent } from '../hero-search-results/hero-search-results.component';
 import { TitlebarComponent } from "../titlebar/titlebar.component";
+import { Hero } from '../../models/Hero';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -27,5 +29,5 @@ export class HomeComponent {
   Title = 'Room of Really Really Strong Dudes'
   heroRepository = inject(HeroRepository)
   auditLogRepository = inject(AuditLogRepository)
-  Heroes$ = this.heroRepository.getAll()
+  Heroes$: Observable<Hero[]> = this.heroRepository.getAll()
 }
