@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SearchHeroService } from '../../api/search-hero-name.service';
 import { AsyncPipe } from '@angular/common';
 import { Hero } from '../../models/Hero';
+import { HeroRepository } from '../../repository/hero.repository';
 
 @Component({
   selector: 'app-hero-search',
@@ -13,7 +14,9 @@ import { Hero } from '../../models/Hero';
   styleUrl: './hero-search.component.css',
 })
 export class HeroSearchComponent {
+  heroRepository = inject(HeroRepository)
   searchNameService = inject(SearchHeroService);
+
   searchForm: FormGroup;
   heroes: Hero[] = [];
 
@@ -28,5 +31,9 @@ export class HeroSearchComponent {
       const queryValue = this.searchForm.get('query')?.value;
       this.searchNameService.searchHeroes(queryValue);
     }
+  }
+
+  resetHeroResults() {
+    this.heroRepository.clearStore();
   }
 }
