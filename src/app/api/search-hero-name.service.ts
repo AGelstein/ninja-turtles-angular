@@ -32,7 +32,7 @@ export class SearchHeroService {
       )
       .subscribe((heroes) => {
         this.heroRepository.clearStore();
-        this.heroRepository.update(heroes);
+        this.heroRepository.updateHero(heroes);
         this.auditLogRepository.log(`"${query}" Hero Search Executed`)
       });
   }

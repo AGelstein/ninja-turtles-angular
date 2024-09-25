@@ -19,11 +19,11 @@ const store = createStore(
 export class HeroRepository {
   constructor() {}
 
-  update(hero: Hero) {
+  updateHero(hero: Hero) {
     store.update(addEntities(hero));
   }
 
-  getAll(): Observable<Hero[]> {
+  selectAllHeroes(): Observable<Hero[]> {
     return store.pipe(selectAllEntities());
   }
 

@@ -29,7 +29,11 @@ export class AuditLogRepository {
         map((count: number) => count > 0)
     )
 
-    getAllAuditLogRows(): Observable<AuditLog[]> {
+    selectAllAuditLogs(): Observable<AuditLog[]> {
         return store.pipe(selectAllEntities())
+    }
+
+    clearStore() {
+        store.reset()
     }
 }

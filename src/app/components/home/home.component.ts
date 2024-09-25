@@ -29,5 +29,5 @@ export class HomeComponent {
   Title = 'Room of Really Really Strong Dudes'
   heroRepository = inject(HeroRepository)
   auditLogRepository = inject(AuditLogRepository)
-  Heroes$: Observable<Hero[]> = this.heroRepository.getAll()
+  Heroes$: Observable<Hero[]> = this.heroRepository.selectAllHeroes()
 }

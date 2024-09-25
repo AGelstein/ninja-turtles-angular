@@ -14,7 +14,7 @@ import { AuditLog } from '../../../models/AuditLog';
 export class AuditLogComponent {
   private readonly auditLogRepository = inject(AuditLogRepository)
   logsExist$: Observable<boolean> = this.auditLogRepository.logsExist$
-  $auditLog: Observable<AuditLog[]> = this.auditLogRepository.getAllAuditLogRows()
+  auditLog$: Observable<AuditLog[]> = this.auditLogRepository.selectAllAuditLogs()
 }
   // TODO the newest log should appear at the top of the list rather than the bottom
   // TODO Should have a limitation of how many rows we can show before a paging behavior occurs

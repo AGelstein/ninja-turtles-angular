@@ -18,7 +18,7 @@ export class HeroSearchResultsComponent {
   auditLogRepository = inject(AuditLogRepository)
 
   logsExist$: Observable<boolean> = this.auditLogRepository.logsExist$
-  Heroes$: Observable<Hero[]> = this.heroRepository.getAll()
+  Heroes$: Observable<Hero[]> = this.heroRepository.selectAllHeroes()
 
   heroClick(hero: Hero) {
     this.auditLogRepository.log(`${hero.name} has been clicked`)
