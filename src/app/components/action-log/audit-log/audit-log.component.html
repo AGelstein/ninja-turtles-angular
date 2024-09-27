@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for(log of $auditLog | async; track log.id){
+                    @for(log of reversedAuditLog$ | async; track log.id){
                     <tr class="bg-white border-b hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             {{log.id}}
