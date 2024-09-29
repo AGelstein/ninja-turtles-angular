@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { AuditLogRepository } from '../../../repository/audit-log.repository';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
-import { AuditLog } from '../../../models/AuditLog';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { AuditLog } from '../../models/AuditLog';
+import { AuditLogSignalService } from '../../api/audit-log-signal.service';
 
 @Component({
   selector: 'app-audit-log',
@@ -13,11 +13,10 @@ import { filter, map } from 'rxjs/operators';
   styleUrl: './audit-log.component.css'
 })
 export class AuditLogComponent {
-  private readonly auditLogRepository = inject(AuditLogRepository)
-  logsExist$: Observable<boolean> = this.auditLogRepository.logsExist$
-  auditLog$: Observable<AuditLog[]> = this.auditLogRepository.selectAllAuditLogs()
+  private readonly auditLogSignalService = inject(AuditLogSignalService);
+  logsExist$: Observable<boolean> =this.auditLogSignalService.logsExist$();
+  auditLog$: Observable<AuditLog[]> = this.auditLogSignalService.getAuditLogs();
   reversedAuditLog$: Observable<AuditLog[]> = this.auditLog$.pipe(
-    filter((logs): logs is AuditLog[] => logs !== undefined),
     map((logs: AuditLog[]) => logs.slice().reverse())
   );
 }
