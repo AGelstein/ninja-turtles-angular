@@ -1,8 +1,9 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { Hero } from '../models/Hero';
-import { map } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { HeroRepository } from '../repository/hero.repository';
 import { AuditLogRepository } from '../repository/audit-log.repository';
 
@@ -10,31 +11,41 @@ import { AuditLogRepository } from '../repository/audit-log.repository';
   providedIn: 'root',
 })
 export class SearchHeroService {
-  private auditLogRepository = inject(AuditLogRepository)
-  private heroRepository = inject(HeroRepository);
-  private httpClient = inject(HttpClient);
+  constructor(
+    private auditLogRepository: AuditLogRepository,
+    private heroRepository: HeroRepository,
+    private httpClient: HttpClient
+  ) {}
 
   searchHeroes(query: string) {
+    this.fetchHeroes(query).subscribe(
+      (heroes) => {
+        this.heroRepository.clearStore();
+        this.heroRepository.updateHero(heroes);
+        this.auditLogRepository.log(`"${query}" Hero Search Executed`);
+      },
+      (error) => {
+        this.auditLogRepository.log(`ERROR: ${error.message}`);
+      }
+    );
+  }
+
+  private fetchHeroes(query: string) {
     return this.httpClient
-      .get<any>(
-        `https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${query}`
-      )
+      .get<any>(`https://www.superheroapi.com/api.php/${environment.apiKEY}/search/${query}`)
       .pipe(
         map((response) => {
           if (Array.isArray(response.results)) {
             return response.results.map(this.transformToHero);
           } else {
-            //todo make error type?
-            this.auditLogRepository.log('ERROR: No hero found by that name')
             throw new Error('Invalid API response: results is not an array');
           }
+        }),
+        catchError(() => {
+          this.auditLogRepository.log('ERROR: No hero found by that name');
+          return of([]);
         })
-      )
-      .subscribe((heroes) => {
-        this.heroRepository.clearStore();
-        this.heroRepository.updateHero(heroes);
-        this.auditLogRepository.log(`"${query}" Hero Search Executed`)
-      });
+      );
   }
 
   private transformToHero(apiData: any): Hero {
