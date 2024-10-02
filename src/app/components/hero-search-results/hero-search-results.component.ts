@@ -5,6 +5,7 @@ import { AuditLogRepository } from '../../repository/audit-log.repository';
 import { HeroRepository } from '../../repository/hero.repository';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-hero-search-results',
@@ -18,7 +19,10 @@ export class HeroSearchResultsComponent {
   auditLogRepository = inject(AuditLogRepository)
 
   logsExist$: Observable<boolean> = this.auditLogRepository.logsExist$
-  Heroes$: Observable<Hero[]> = this.heroRepository.selectAllHeroes()
+  heroes$: Observable<Hero[]> = this.heroRepository.selectAllHeroes()
+  heroesExist$: Observable<boolean> = this.heroes$.pipe(
+    map((heroes: Hero[]) => heroes.length > 0)
+  )
 
   heroClick(hero: Hero) {
     this.auditLogRepository.log(`${hero.name} has been clicked`)
