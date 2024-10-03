@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { HeroCardComponent } from '../hero-card/hero-card/hero-card.component';
 import { Hero } from '../../models/Hero';
 import { AuditLogRepository } from '../../repository/audit-log.repository';
@@ -17,6 +17,9 @@ import { map } from 'rxjs';
 export class HeroSearchResultsComponent {
   heroRepository = inject(HeroRepository)
   auditLogRepository = inject(AuditLogRepository)
+
+  @Input()
+  hasSearched: boolean = false
 
   logsExist$: Observable<boolean> = this.auditLogRepository.logsExist$
   heroes$: Observable<Hero[]> = this.heroRepository.selectAllHeroes()
