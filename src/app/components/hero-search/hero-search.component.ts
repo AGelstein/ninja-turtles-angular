@@ -40,5 +40,6 @@ export class HeroSearchComponent {
   resetHeroResults() {
     this.heroRepository.clearStore();
     this.hasSearched = false;
+    this.searchForm.reset({ query: '' });
   }
 }
