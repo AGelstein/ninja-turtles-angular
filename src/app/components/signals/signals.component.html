@@ -1,1 +1,26 @@
-<p>signals works!</p>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .grid-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+
+<div class="grid-container">
+    <div class="grid-item">
+        <h3>Count</h3>
+        <p id="count">{{count()}}</p>
+        <button (click)="increment()" class="btn">Increment</button>
+        <button (click)="decrement()" class="btn">Decrement</button>
+        <button (click)="reset()" class="btn">Reset</button>
+    </div>
+    <div class="grid-item">
+        <h3>Double Count</h3>
+        <p id="doubleCount">{{doubleCount()}}</p>
+    </div>
+</div>
