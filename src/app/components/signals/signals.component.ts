@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, signal, Signal, WritableSignal } from '@angular/core';
+import { Component, computed, effect, OnInit, signal, Signal, WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'app-signals',
@@ -9,8 +9,16 @@ import { Component, computed, OnInit, signal, Signal, WritableSignal } from '@an
 })
 export class SignalsComponent implements OnInit {
 
+  name: WritableSignal<string> = signal('');
+  isEven: Signal<boolean> = computed(() => this.count() % 2 === 0);
+  greeting: Signal<string> = computed(() => `Hello, ${this.name()}`);
+
   count: WritableSignal<number> = signal(0);
   doubleCount: Signal<number> = computed(() =>  this.count() * 2);
+
+  countEffect = effect(() => {
+    console.log('Count has changed:', this.count());
+  });
 
 ngOnInit(): void {
   console.log('count: ', this.count());
