@@ -6,9 +6,8 @@ import { AsyncPipe, NgFor } from '@angular/common';
 import { AuditLogRepository } from '../../repository/audit-log.repository';
 import { HeroSearchResultsComponent } from '../hero-search-results/hero-search-results.component';
 import { TitlebarComponent } from "../titlebar/titlebar.component";
-import { Hero } from '../../models/Hero';
-import { Observable } from 'rxjs';
 import { AuditLogComponent } from "../audit-log/audit-log.component";
+import { toSignal } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -29,5 +28,6 @@ export class HomeComponent {
   Title = 'Room of Really Really Strong Dudes'
   heroRepository = inject(HeroRepository)
   auditLogRepository = inject(AuditLogRepository)
-  Heroes$: Observable<Hero[]> = this.heroRepository.selectAllHeroes()
+  heroes = toSignal(this.heroRepository.selectAllHeroes())
 }
+

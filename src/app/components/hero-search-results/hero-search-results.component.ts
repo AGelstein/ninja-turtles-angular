@@ -6,6 +6,7 @@ import { HeroRepository } from '../../repository/hero.repository';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs/internal/Observable';
 import { map, tap } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-hero-search-results',
@@ -21,15 +22,10 @@ export class HeroSearchResultsComponent {
   @Input()
   hasSearched: boolean = false
 
-  logsExist$: Observable<boolean> = this.auditLogRepository.logsExist$
+  logsExist = toSignal(this.auditLogRepository.logsExist$)
   heroes$: Observable<Hero[]> = this.heroRepository.selectAllHeroes()
-  heroesExist$: Observable<boolean> = this.heroes$.pipe(
-    map((heroes: Hero[]) => heroes.length > 0),
-    tap((heroesExist: boolean) => {
-    console.log(`Heroes exist: ${heroesExist}`),
-    console.log(`hasSearched: ${this.hasSearched}`)
-    }
-
+  heroesExist = toSignal(this.heroes$.pipe(
+    map((heroes: Hero[]) => heroes.length > 0)
   ))
 
   heroClick(hero: Hero) {

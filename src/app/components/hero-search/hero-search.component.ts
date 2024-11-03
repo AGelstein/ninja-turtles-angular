@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SearchHeroService } from '../../api/search-hero-name.service';
 import { AsyncPipe } from '@angular/common';
-import { Hero } from '../../models/Hero';
 import { HeroRepository } from '../../repository/hero.repository';
 import { HeroSearchResultsComponent } from "../hero-search-results/hero-search-results.component";
 
@@ -19,9 +18,7 @@ export class HeroSearchComponent {
   searchNameService = inject(SearchHeroService);
 
   searchForm: FormGroup;
-  heroes: Hero[] = [];
-  // this is imperative code. this is not ideal
-  hasSearched = signal(false);
+  hasSearchedOnce = signal(false);
 
   constructor(private fb: FormBuilder) {
     this.searchForm = this.fb.group({
@@ -33,13 +30,13 @@ export class HeroSearchComponent {
     if (this.searchForm.valid) {
       const queryValue = this.searchForm.get('query')?.value;
       this.searchNameService.searchHeroes(queryValue);
-      this.hasSearched.set(true);
+      this.hasSearchedOnce.set(true);
     }
   }
 
   resetHeroResults() {
     this.heroRepository.clearStore();
-    this.hasSearched.set(false);
+    this.hasSearchedOnce.set(false);
     this.searchForm.reset({ query: '' });
   }
 }
