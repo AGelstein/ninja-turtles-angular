@@ -18,16 +18,16 @@ export class SearchHeroService {
   ) {}
 
   searchHeroes(query: string) {
-    this.fetchHeroes(query).subscribe(
-      (heroes) => {
+    this.fetchHeroes(query).subscribe({
+      next: (heroes) => {
         this.heroRepository.clearStore();
         this.heroRepository.updateHero(heroes);
         this.auditLogRepository.log(`"${query}" Hero Search Executed`);
       },
-      (error) => {
+      error: (error) => {
         this.auditLogRepository.log(`ERROR: ${error.message}`);
       }
-    );
+    });
   }
 
   private fetchHeroes(query: string) {
